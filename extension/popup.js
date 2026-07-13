@@ -5,8 +5,12 @@ chrome.storage.local.get("apiKey").then(({ apiKey }) => {
   if (apiKey) apiKeyEl.value = apiKey;
 });
 
-document.getElementById("toggle").addEventListener("click", () => {
+document.getElementById("toggle").addEventListener("click", (event) => {
   apiKeyEl.type = apiKeyEl.type === "password" ? "text" : "password";
+  const visible = apiKeyEl.type === "text";
+  event.currentTarget.setAttribute("aria-pressed", String(visible));
+  event.currentTarget.setAttribute("aria-label", visible ? "隐藏 API Key" : "显示 API Key");
+  event.currentTarget.title = visible ? "隐藏 API Key" : "显示 API Key";
 });
 
 document.getElementById("save").addEventListener("click", async () => {
