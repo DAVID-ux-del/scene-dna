@@ -29,6 +29,14 @@ SceneDNA 不使用开发者中转服务器。API Key 仅保存在 `chrome.storag
 5. 打开 SceneDNA 设置，填写 API Key、视觉模型和 API 地址。
 6. 在任意网页图片上右键，选择「用 SceneDNA 解析图片」。
 
+### 配置项
+
+| 配置 | 默认值 | 存储位置 | 说明 |
+|---|---|---|---|
+| API Key | 空 | `chrome.storage.local` | 必填，仅保存在当前浏览器设备 |
+| 视觉模型 | `gpt-5.5` | `chrome.storage.sync` | 使用 API 服务支持的视觉模型名称 |
+| API 地址 | `https://aihubmix.com/v1` | `chrome.storage.sync` | OpenAI 兼容接口的 `/v1` 基础地址 |
+
 ## 项目结构
 
 ```text
