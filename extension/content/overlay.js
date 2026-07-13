@@ -18,12 +18,12 @@
     root = document.createElement("div");
     root.id = "scenedna-overlay";
     root.innerHTML = `
-      <div class="i2p-panel" role="dialog" aria-label="GPT Image 提示词">
+      <div class="i2p-panel" role="dialog" aria-labelledby="scenedna-title">
         <div class="i2p-head">
-          <span class="i2p-title">SceneDNA 视觉解析</span>
+          <span class="i2p-title" id="scenedna-title">SceneDNA 视觉解析</span>
           <button class="i2p-close" title="关闭" aria-label="关闭">✕</button>
         </div>
-        <div class="i2p-body"></div>
+        <div class="i2p-body" aria-live="polite"></div>
         <div class="i2p-foot">
           <button class="i2p-copy" disabled>复制提示词</button>
         </div>
