@@ -71,9 +71,12 @@ testBtn.addEventListener("click", async () => {
   }
   setStatus("测试中…", "pending");
   testBtn.disabled = true;
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 15000);
   try {
     const res = await fetch(`${cfg.baseUrl}/models`, {
       headers: { Authorization: `Bearer ${cfg.apiKey}` },
+      signal: controller.signal,
     });
     if (res.ok) {
       setStatus("连接成功 ✓ Key 有效", "ok");
@@ -82,9 +85,13 @@ testBtn.addEventListener("click", async () => {
     } else {
       setStatus("连接失败：HTTP " + res.status + "，检查 API 地址", "err");
     }
-  } catch {
-    setStatus("网络请求失败，检查网络或 API 地址", "err");
+  } catch (error) {
+    setStatus(
+      error && error.name === "AbortError" ? "连接超时（15 秒），请检查网络或 API 地址" : "网络请求失败，检查网络或 API 地址",
+      "err"
+    );
   } finally {
+    clearTimeout(timeout);
     testBtn.disabled = false;
   }
 });
