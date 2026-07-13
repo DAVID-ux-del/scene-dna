@@ -5,6 +5,7 @@
 const MENU_ID = "scenedna-analyze";
 const DEFAULT_BASE_URL = "https://aihubmix.com/v1";
 const DEFAULT_MODEL = "gpt-5.5";
+const MAX_IMAGE_BYTES = 20 * 1024 * 1024;
 
 // 元提示词：按 OpenAI 官方 GPT Image 提示词规则，产出高保真复现提示词。
 const META_PROMPT = `You are an expert prompt engineer for OpenAI's GPT Image 2 text-to-image model.
@@ -103,6 +104,9 @@ async function fetchImageAsDataUrl(url) {
       new Error(`图片地址返回了非图片内容（${blob.type}）。请确认右键的是可直接访问的图片。`),
       "retry_image"
     );
+  }
+  if (blob.size > MAX_IMAGE_BYTES) {
+    throw withAction(new Error("图片超过 20 MB，请压缩或换一张较小的图片。"), "retry_image");
   }
   const mimeType = blob.type || "image/png";
   const buf = await blob.arrayBuffer();
