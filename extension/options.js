@@ -25,7 +25,7 @@ function readForm() {
   return {
     apiKey: apiKeyEl.value.trim(),
     model: modelEl.value.trim() || "gpt-5.5",
-    baseUrl: (baseUrlEl.value.trim() || "https://aihubmix.com/v1").replace(/\/$/, ""),
+    baseUrl: (baseUrlEl.value.trim() || "https://aihubmix.com/v1").replace(/\/+$/, ""),
   };
 }
 

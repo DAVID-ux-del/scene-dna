@@ -77,7 +77,7 @@ async function getConfig() {
   return {
     apiKey: (apiKey || "").trim(),
     model: (visionModel || DEFAULT_MODEL).trim(),
-    baseUrl: (apiBaseUrl || DEFAULT_BASE_URL).trim().replace(/\/$/, ""),
+    baseUrl: (apiBaseUrl || DEFAULT_BASE_URL).trim().replace(/\/+$/, ""),
   };
 }
 
