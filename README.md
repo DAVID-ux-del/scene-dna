@@ -4,7 +4,7 @@
 ![Manifest V3](https://img.shields.io/badge/Manifest-V3-6d5dfc.svg)
 ![Chrome Extension](https://img.shields.io/badge/Chrome-Extension-0f766e.svg?logo=googlechrome&logoColor=white)
 
-**SceneDNA** 是一个本地优先的浏览器图片解析工具。在网页图片上点击右键，它会提取场景、主体、构图、文字、色彩和约束，生成可用于 AI 图像创作的结构化提示词。
+**SceneDNA** 是一个本地优先的浏览器图片解析工具。在网页图片上点击右键，它提取场景、主体、构图、文字、色彩和约束，生成用于 AI 图像创作的结构化提示词。
 
 ![SceneDNA 界面预览](docs/preview.svg)
 
