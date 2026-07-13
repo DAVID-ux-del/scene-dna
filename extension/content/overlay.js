@@ -5,6 +5,7 @@
 
   let root, body, copyBtn, currentPrompt = "";
   let loadingTimer = null;
+  let previousFocus = null;
 
   function clearLoadingTimer() {
     if (loadingTimer) {
@@ -46,11 +47,16 @@
 
   function show() {
     ensureDom();
+    const wasVisible = root.classList.contains("i2p-visible");
+    if (!wasVisible) previousFocus = document.activeElement;
     root.classList.add("i2p-visible");
+    if (!wasVisible) root.querySelector(".i2p-close").focus({ preventScroll: true });
   }
   function hide() {
     clearLoadingTimer();
     if (root) root.classList.remove("i2p-visible");
+    if (previousFocus && previousFocus.isConnected) previousFocus.focus({ preventScroll: true });
+    previousFocus = null;
   }
 
   function setLoading() {
