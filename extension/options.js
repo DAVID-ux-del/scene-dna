@@ -82,6 +82,8 @@ testBtn.addEventListener("click", async () => {
       setStatus("连接成功 ✓ Key 有效", "ok");
     } else if (res.status === 401 || res.status === 403) {
       setStatus("Key 无效或未授权（HTTP " + res.status + "）", "err");
+    } else if (res.status === 429) {
+      setStatus("请求过于频繁，请稍后再试", "err");
     } else {
       setStatus("连接失败：HTTP " + res.status + "，检查 API 地址", "err");
     }
