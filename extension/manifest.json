@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "SceneDNA — Image Prompt Studio",
+  "version": "1.0.0",
+  "description": "解析图片的场景、主体、构图、文字与色彩，生成可编辑的 AI 绘图提示词。",
+  "permissions": ["contextMenus", "storage", "scripting"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "options_page": "options.html",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "SceneDNA 设置",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  }
+}
