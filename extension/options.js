@@ -31,6 +31,11 @@ function readForm() {
 
 document.getElementById("save").addEventListener("click", async () => {
   const cfg = readForm();
+  if (!cfg.apiKey) {
+    setStatus("请先填 API Key", "err");
+    apiKeyEl.focus();
+    return;
+  }
   await chrome.storage.local.set({ apiKey: cfg.apiKey });
   await chrome.storage.sync.set({ visionModel: cfg.model, apiBaseUrl: cfg.baseUrl });
   setStatus("已保存 ✓", "ok");
