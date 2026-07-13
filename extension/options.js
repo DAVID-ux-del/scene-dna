@@ -29,11 +29,25 @@ function readForm() {
   };
 }
 
+function isValidBaseUrl(value) {
+  try {
+    const url = new URL(value);
+    return url.protocol === "https:" || url.protocol === "http:";
+  } catch {
+    return false;
+  }
+}
+
 document.getElementById("save").addEventListener("click", async () => {
   const cfg = readForm();
   if (!cfg.apiKey) {
     setStatus("请先填 API Key", "err");
     apiKeyEl.focus();
+    return;
+  }
+  if (!isValidBaseUrl(cfg.baseUrl)) {
+    setStatus("请输入有效的 HTTP(S) API 地址", "err");
+    baseUrlEl.focus();
     return;
   }
   await chrome.storage.local.set({ apiKey: cfg.apiKey });
@@ -48,6 +62,11 @@ testBtn.addEventListener("click", async () => {
   const cfg = readForm();
   if (!cfg.apiKey) {
     setStatus("请先填 API Key", "err");
+    return;
+  }
+  if (!isValidBaseUrl(cfg.baseUrl)) {
+    setStatus("请输入有效的 HTTP(S) API 地址", "err");
+    baseUrlEl.focus();
     return;
   }
   setStatus("测试中…", "pending");
