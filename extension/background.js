@@ -98,6 +98,12 @@ async function fetchImageAsDataUrl(url) {
     );
   }
   const blob = await res.blob();
+  if (blob.type && !blob.type.startsWith("image/")) {
+    throw withAction(
+      new Error(`图片地址返回了非图片内容（${blob.type}）。请确认右键的是可直接访问的图片。`),
+      "retry_image"
+    );
+  }
   const mimeType = blob.type || "image/png";
   const buf = await blob.arrayBuffer();
   const bytes = new Uint8Array(buf);
