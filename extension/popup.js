@@ -26,6 +26,10 @@ document.getElementById("save").addEventListener("click", async () => {
   setTimeout(() => (status.textContent = ""), 2000);
 });
 
+apiKeyEl.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") document.getElementById("save").click();
+});
+
 document.getElementById("more").addEventListener("click", (e) => {
   e.preventDefault();
   chrome.runtime.openOptionsPage();
